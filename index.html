@@ -101,61 +101,238 @@
       .sim-row button { padding: 9px 8px; font-size: .8rem; }
       th, td { padding: 9px 7px; font-size: .82rem; }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    main { width: min(1100px, calc(100% - 40px)); padding-top: 42px; }
+    header { display: flex; align-items: center; gap: 18px; margin-bottom: 23px; padding-bottom: 22px; border-bottom-color: #ffffff13; }
+    header::after { width: 48px; }
+    .brand-mark { display: grid; width: 50px; height: 50px; flex: 0 0 auto; place-items: center; border: 1px solid #a8874a75; border-radius: 14px; color: var(--gold-bright); background: linear-gradient(145deg, #30291d, #171716); font: 700 1.65rem/1 ui-monospace, monospace; box-shadow: inset 0 0 20px #d7ad5810; }
+    .brand-mark span { color: #fff; font-size: 1rem; }
+    .brand-copy { min-width: 0; }
+    .brand-copy .eyebrow { margin-bottom: 3px; font-size: .63rem; }
+    .brand-copy h1 { font-size: clamp(1.55rem, 4vw, 2.15rem); letter-spacing: -.045em; }
+    .brand-copy > p:last-child { margin: 4px 0 0; font-size: .88rem; }
+    .header-tag { display: flex; align-items: center; gap: 8px; margin-left: auto; padding: 8px 11px; border: 1px solid #34363b; border-radius: 99px; color: #aaa9a2; font: 600 .62rem ui-monospace, monospace; letter-spacing: .06em; white-space: nowrap; }
+    .live-dot, .model-dot, .status-indicator { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #99a581; box-shadow: 0 0 9px #99a58180; }
+    .card { margin: 14px 0; padding: 22px 24px; border-radius: 12px; }
+    .card::before { left: 24px; width: 28px; }
+    .composer { padding: 22px 24px 17px; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 15px; }
+    .section-head h2 { margin: 0; font-size: 1.06rem; }
+    .section-head h2::first-letter { color: inherit; }
+    .section-kicker, .micro-label { display: block; margin: 0 0 4px; color: #a9a49a; font: 650 .62rem/1.4 ui-monospace, monospace; letter-spacing: .13em; }
+    .model-pill, .sandbox-badge, .result-count { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid #3b3933; border-radius: 99px; color: #c8b88e; background: #24221d; font: 650 .62rem ui-monospace, monospace; letter-spacing: .06em; white-space: nowrap; }
+    .model-dot { width: 6px; height: 6px; background: var(--gold); box-shadow: 0 0 8px #d7ad5890; }
+    #sentence { min-height: 112px; padding: 15px 16px; border-color: #3b3d42; border-radius: 9px; background: #101216; font-size: 1.02rem; line-height: 1.65; }
+    .composer-meta { display: flex; justify-content: space-between; gap: 12px; padding: 8px 2px 0; color: #84858a; font-size: .7rem; }
+    .shortcut-hint { display: inline-flex; align-items: center; gap: 4px; }
+    kbd { min-width: 17px; padding: 1px 4px; border: 1px solid #44464b; border-radius: 4px; color: #c9c7c1; background: #24262a; font: .65rem ui-monospace, monospace; text-align: center; }
+    .composer-footer { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-top: 13px; }
+    .sample-block { min-width: 0; }
+    .sample-row { gap: 7px; margin-top: 7px; }
+    .sample { padding: 7px 10px; border-radius: 6px; font-size: .72rem; }
+    .sample[aria-pressed="true"] { border-color: #78633d; color: var(--gold-bright); background: #2b271e; }
+    .run-controls { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+    .clear-button { padding: 9px 10px; border-color: #3a3c40; color: #aaa9a2; background: transparent; font-size: .78rem; font-weight: 550; }
+    .clear-button:hover { border-color: #79716a; color: var(--ink); background: #25262a; }
+    .run-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 23px; padding: 11px 14px; border-radius: 7px; background: linear-gradient(135deg, #dfbd73, #c49a4c); font-size: .82rem; }
+    .run-button span:last-child { font-size: 1rem; }
+    .status-line { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 11px; border-top: 1px solid #ffffff0b; }
+    .status-indicator { width: 5px; height: 5px; background: #8e927e; box-shadow: none; }
+    .status { min-height: 0; margin: 0; font-size: .72rem; }
+    .analysis-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .85fr); gap: 14px; align-items: stretch; }
+    .analysis-grid .card { min-width: 0; margin: 0; }
+    .analysis-card { min-height: 300px; }
+    .prediction-card { min-height: 300px; }
+    .result-count { color: #a9a8a2; border-color: #36383d; background: #191b1f; }
+    .empty-state { display: grid; min-height: 208px; align-content: center; justify-items: start; padding: 17px 4px; }
+    .empty-glyph { display: grid; width: 35px; height: 35px; margin-bottom: 13px; place-items: center; border: 1px solid #4b4231; border-radius: 10px; color: var(--gold); background: #29251e; font: 1.3rem ui-monospace, monospace; }
+    .empty-state strong { color: #dedbd3; font-size: .9rem; font-weight: 620; }
+    .empty-state p, .empty-note { max-width: 340px; margin: 5px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.6; }
+    .score-panel { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 4px 0 15px; padding: 13px 15px; border: 1px solid #48402f; border-radius: 9px; background: linear-gradient(110deg, #28241d, #1c1c1b 85%); }
+    .score-panel .micro-label { color: var(--gold); }
+    .score-caption { margin: 3px 0 0; color: #a8a69f; font-size: .68rem; }
+    .score-panel > strong { color: #f0c96d; font: 700 2rem/1 ui-monospace, monospace; letter-spacing: -.08em; text-shadow: 0 0 20px #e8bd6038; }
+    .analysis-card table { margin: 7px 0 0; }
+    .analysis-card th, .analysis-card td { padding: 8px 7px; font-size: .76rem; }
+    .analysis-card th { font-size: .62rem; }
+    .prob-cell { min-width: 88px; }
+    .mini-track { display: block; width: 100%; height: 3px; margin-top: 4px; border-radius: 99px; background: #34353a; overflow: hidden; }
+    .mini-track > span { display: block; height: 100%; border-radius: inherit; background: #b69250; }
+    .steps-disclosure { margin-top: 12px; border-top: 1px solid #303238; }
+    .steps-disclosure summary { padding: 10px 2px 2px; color: #b5aa8f; font-size: .72rem; cursor: pointer; }
+    .steps-disclosure summary:hover { color: var(--gold-bright); }
+    .steps-disclosure .steps { margin-top: 9px; font-size: .75rem; }
+    .spark-icon { color: var(--gold); font-size: 1.55rem; }
+    .empty-note { min-height: 82px; margin: 0; }
+    .bars { gap: 12px; margin-top: 5px; }
+    .bar-row { grid-template-columns: minmax(72px, 112px) 1fr 59px; gap: 8px; }
+    .bar-label { font-size: .75rem; }
+    .bar-pct { font-size: .68rem; }
+    .prediction-foot { display: flex; align-items: center; gap: 8px; margin-top: 19px; color: #818188; font-size: .66rem; }
+    .prediction-line { width: 18px; height: 1px; background: var(--gold); opacity: .7; }
+    .simulation-card { margin-top: 14px; padding-bottom: 19px; }
+    .sim-heading { align-items: start; margin-bottom: 18px; }
+    .section-description { margin: 5px 0 0; color: var(--muted); font-size: .76rem; }
+    .sandbox-badge { color: #aaa9a2; border-color: #393b40; background: #222429; }
+    .simulation-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 22px; }
+    .simulation-controls { padding-right: 20px; border-right: 1px solid #303238; }
+    .preset-row { margin: 7px 0 14px; }
+    .preset-row .preset { min-width: 75px; }
+    .sim-row { grid-template-columns: minmax(0, 1fr) 96px auto; gap: 8px; margin: 8px 0; }
+    .sim-row label { margin-bottom: 4px; color: #aaa9a2; font-size: .7rem; }
+    .sim-row input { padding: 8px 9px; border-radius: 6px; font-size: .78rem; }
+    .sim-row button { padding: 8px 9px; font-size: .68rem; }
+    .add-token { margin-top: 5px; padding: 7px 10px; border: 1px dashed #575142; color: #d2bc83; background: transparent; font-size: .74rem; font-weight: 600; }
+    .add-token span { margin-right: 4px; font-size: 1rem; }
+    .add-token:hover { border-color: var(--gold); background: #27241e; }
+    .simulation-results { min-width: 0; }
+    .simulation-results table { margin-top: 0; }
+    .simulation-results th, .simulation-results td { padding: 7px 5px; font-size: .72rem; }
+    .sim-result { margin-top: 12px; padding-top: 10px; border-top: 1px solid #303238; font-size: .76rem; }
+    .sim-result strong { font-size: 1.45rem; }
+    footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 21px; padding: 0 4px; color: #64656b; font: 600 .58rem ui-monospace, monospace; letter-spacing: .09em; }
+    body.is-loading .status-indicator { background: var(--gold); box-shadow: 0 0 10px #d7ad58; animation: pulse 1s infinite alternate; }
+    body.has-error .status-indicator { background: var(--red); box-shadow: 0 0 8px #d8796f; }
+    @keyframes pulse { to { opacity: .35; } }
+    @media (max-width: 780px) {
+      .analysis-grid { grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); }
+      .simulation-layout { grid-template-columns: 1fr; gap: 15px; }
+      .simulation-controls { padding-right: 0; padding-bottom: 15px; border-right: 0; border-bottom: 1px solid #303238; }
+    }
+    @media (max-width: 620px) {
+      main { width: calc(100% - 24px); padding-top: 26px; }
+      header { align-items: start; gap: 11px; margin-bottom: 15px; padding-bottom: 17px; }
+      .brand-mark { width: 39px; height: 39px; border-radius: 11px; font-size: 1.3rem; }
+      .brand-copy .eyebrow { font-size: .54rem; letter-spacing: .12em; }
+      .brand-copy h1 { font-size: 1.45rem; }
+      .brand-copy > p:last-child { font-size: .7rem; }
+      .header-tag { align-self: start; padding: 6px 7px; font-size: .5rem; }
+      .header-tag .live-dot { width: 5px; height: 5px; }
+      .card { padding: 18px 15px; }
+      .composer { padding: 18px 15px 14px; }
+      .section-head { gap: 8px; }
+      .section-head h2 { font-size: .96rem; }
+      .model-pill { padding: 5px 7px; font-size: .54rem; }
+      #sentence { min-height: 102px; font-size: .9rem; }
+      .composer-footer { align-items: stretch; flex-direction: column; gap: 13px; }
+      .sample-row { gap: 6px; }
+      .sample { padding: 7px 8px; font-size: .68rem; }
+      .run-controls { justify-content: flex-end; }
+      .run-button { min-width: 150px; }
+      .analysis-grid { grid-template-columns: 1fr; gap: 12px; }
+      .analysis-card, .prediction-card { min-height: auto; }
+      .empty-state { min-height: 160px; }
+      .empty-note { min-height: auto; margin-bottom: 14px; }
+      .bar-row { grid-template-columns: minmax(72px, 110px) 1fr 58px; }
+      .simulation-layout { gap: 12px; }
+      .sim-row { grid-template-columns: minmax(0, 1fr) 88px auto; }
+      footer { flex-direction: column; gap: 5px; font-size: .52rem; }
+    }
+    @media (max-width: 380px) {
+      .header-tag { width: 28px; height: 28px; justify-content: center; overflow: hidden; padding: 0; font-size: 0; }
+      .sample { font-size: .62rem; }
+      .shortcut-hint { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
   </style>
 </head>
 <body>
   <main>
     <header>
-      <p class="eyebrow">Gotham · Language Intelligence</p>
-      <h1>Perplexity Explorer</h1>
-      <p>A closer look at what a language model expects, one token at a time.</p>
+      <div class="brand-mark" aria-hidden="true">P<span>·</span></div>
+      <div class="brand-copy">
+        <p class="eyebrow">Gotham · Language Intelligence</p>
+        <h1>Perplexity Explorer</h1>
+        <p>A closer look at what a language model expects, one token at a time.</p>
+      </div>
+      <div class="header-tag"><span class="live-dot"></span> PRIVATE · IN-BROWSER</div>
     </header>
 
-    <section class="card" aria-labelledby="sentence-heading">
-      <h2 id="sentence-heading">1 · Type a sentence</h2>
-      <label for="sentence">Sentence</label>
-      <textarea id="sentence">I love Python</textarea>
-      <div class="sample-row" aria-label="Sample sentences">
-        <button class="secondary sample" data-text="I love Python">I love Python</button>
-        <button class="secondary sample" data-text="Python love I">Python love I</button>
-        <button class="secondary sample" data-text="The capital of France is Paris">The capital of France is Paris</button>
+    <section class="card composer" aria-labelledby="sentence-heading">
+      <div class="section-head">
+        <div><p class="section-kicker">01 / INPUT</p><h2 id="sentence-heading">What should we analyze?</h2></div>
+        <span class="model-pill"><span class="model-dot"></span> DISTILGPT-2</span>
       </div>
-      <div class="actions"><button id="calculate">Calculate perplexity</button></div>
-      <p id="status" class="status" role="status" aria-live="polite">The language model loads in your browser the first time you calculate.</p>
+      <label class="sr-only" for="sentence">Prompt or sentence</label>
+      <textarea id="sentence" maxlength="5000" placeholder="Write or paste a sentence to see how predictable it is…">I love Python</textarea>
+      <div class="composer-meta">
+        <span id="char-count">12 / 5,000 characters</span>
+        <span class="shortcut-hint"><kbd>⌘</kbd><span>+</span><kbd>↵</kbd> to analyze</span>
+      </div>
+      <div class="composer-footer">
+        <div class="sample-block">
+          <span class="micro-label">TRY A SAMPLE</span>
+          <div class="sample-row" aria-label="Sample sentences">
+            <button type="button" class="secondary sample" data-text="I love Python">I love Python</button>
+            <button type="button" class="secondary sample" data-text="Python love I">Python love I</button>
+            <button type="button" class="secondary sample" data-text="The capital of France is Paris">The capital of France is Paris</button>
+          </div>
+        </div>
+        <div class="run-controls">
+          <button id="clear-prompt" type="button" class="clear-button">Clear</button>
+          <button id="calculate" type="button" class="run-button"><span>Analyze prompt</span><span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <div class="status-line"><span class="status-indicator"></span><p id="status" class="status" role="status" aria-live="polite">Your prompt stays in this browser. The model loads when you run your first analysis.</p></div>
       <div id="model-error" class="error hidden" role="alert"></div>
     </section>
 
-    <section class="card" aria-labelledby="model-result-heading">
-      <h2 id="model-result-heading">2 · Probability of each token → perplexity</h2>
-      <p id="model-placeholder" class="note">Calculate a sentence to see probabilities from the model.</p>
-      <div id="model-output" class="hidden">
-        <div class="table-wrap"><table><thead><tr><th>#</th><th>Token</th><th class="num">Probability P</th><th class="num">1/P</th></tr></thead><tbody id="model-rows"></tbody></table></div>
-        <div id="model-steps" class="steps"></div>
-        <div class="result"><span>Perplexity</span><strong id="model-perplexity">—</strong></div>
+    <div class="analysis-grid">
+      <section class="card analysis-card" aria-labelledby="model-result-heading">
+        <div class="section-head">
+          <div><p class="section-kicker">02 / ANALYSIS</p><h2 id="model-result-heading">Token breakdown</h2></div>
+          <span id="result-count" class="result-count hidden"></span>
+        </div>
+        <div id="model-placeholder" class="empty-state">
+          <div class="empty-glyph" aria-hidden="true">↳</div>
+          <strong>Your analysis will appear here</strong>
+          <p>Run a prompt to see each token's probability and the overall perplexity score.</p>
+        </div>
+        <div id="model-output" class="hidden">
+          <div class="score-panel">
+            <div><span class="micro-label">PROMPT PERPLEXITY</span><p class="score-caption">Lower usually means more predictable to this model.</p></div>
+            <strong id="model-perplexity">—</strong>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>#</th><th>Token</th><th class="num">Probability</th><th class="num">Surprise</th></tr></thead><tbody id="model-rows"></tbody></table></div>
+          <details class="steps-disclosure"><summary>How the score is calculated</summary><div id="model-steps" class="steps"></div></details>
+        </div>
+      </section>
+
+      <aside class="card prediction-card" aria-labelledby="next-heading">
+        <div class="section-head">
+          <div><p class="section-kicker">03 / NEXT TOKEN</p><h2 id="next-heading">What comes next?</h2></div>
+          <span class="spark-icon" aria-hidden="true">⌁</span>
+        </div>
+        <p id="next-placeholder" class="empty-note">The model's most likely continuations will show up here after analysis.</p>
+        <div id="next-bars" class="bars"></div>
+        <div class="prediction-foot"><span class="prediction-line"></span><span>Top continuations by probability</span></div>
+      </aside>
+    </div>
+
+    <section class="card simulation-card" aria-labelledby="hand-heading">
+      <div class="section-head sim-heading">
+        <div><p class="section-kicker">04 / SANDBOX</p><h2 id="hand-heading">Build a score by hand</h2><p class="section-description">Explore how token probabilities change perplexity. These values are simulated.</p></div>
+        <span class="sandbox-badge">MANUAL MODE</span>
+      </div>
+      <div class="simulation-layout">
+        <div class="simulation-controls">
+          <span class="micro-label">START WITH A PRESET</span>
+          <div class="sample-row preset-row">
+            <button type="button" class="secondary preset" data-preset="love">Balanced</button>
+            <button type="button" class="secondary preset" data-preset="eighths">Uniform</button>
+            <button type="button" class="secondary preset" data-preset="surprise">Surprise</button>
+          </div>
+          <div id="sim-rows"></div>
+          <button id="add-token" type="button" class="add-token"><span aria-hidden="true">+</span> Add token</button>
+        </div>
+        <div class="simulation-results">
+          <div class="table-wrap"><table><thead><tr><th>#</th><th>Token</th><th class="num">Probability</th><th class="num">1 / P</th></tr></thead><tbody id="sim-table"></tbody></table></div>
+          <div id="sim-steps" class="steps"></div>
+          <div class="result sim-result"><span>Simulated perplexity</span><strong id="sim-perplexity">—</strong></div>
+        </div>
       </div>
     </section>
-
-    <section class="card" aria-labelledby="next-heading">
-      <h2 id="next-heading">3 · What does the model predict next?</h2>
-      <p id="next-placeholder" class="note">The model's next-token predictions will appear after calculation.</p>
-      <div id="next-bars" class="bars"></div>
-    </section>
-
-    <section class="card" aria-labelledby="hand-heading">
-      <h2 id="hand-heading">4 · Try it by hand <span class="note">(Simulated, not from the model)</span></h2>
-      <div class="sample-row">
-        <button class="secondary preset" data-preset="love">I love Python</button>
-        <button class="secondary preset" data-preset="eighths">All 1/8</button>
-        <button class="secondary preset" data-preset="surprise">One surprising word</button>
-      </div>
-      <div id="sim-rows"></div>
-      <button id="add-token" class="secondary">+ Add token</button>
-      <div class="table-wrap"><table><thead><tr><th>#</th><th>Token</th><th class="num">Probability P</th><th class="num">1/P</th></tr></thead><tbody id="sim-table"></tbody></table></div>
-      <div id="sim-steps" class="steps"></div>
-      <div class="result"><span>Perplexity</span><strong id="sim-perplexity">—</strong></div>
-      <p class="note">Enter probabilities greater than 0 and up to 1. These are examples you provide, not model predictions.</p>
-    </section>
+    <footer><span>PERPLEXITY EXPLORER</span><span>MODEL RUNS LOCALLY IN YOUR BROWSER</span></footer>
   </main>
 
   <script type="module">
@@ -163,6 +340,7 @@
     const $ = (id) => document.getElementById(id);
     const sentence = $("sentence");
     const calculate = $("calculate");
+    const status = $("status");
     let tokenizer;
     let model;
     let Tensor;
@@ -192,12 +370,16 @@
     }
 
     function renderTable(body, tokens, probabilities) {
-      body.innerHTML = tokens.map((token, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(token).replace(/ /g, "␣")}</td><td class="num">${probabilities[i].toPrecision(6)}</td><td class="num">${(1 / probabilities[i]).toPrecision(6)}</td></tr>`).join("");
+      const maxProbability = Math.max(...probabilities, 0);
+      body.innerHTML = tokens.map((token, i) => {
+        const relative = maxProbability ? Math.max(probabilities[i] / maxProbability * 100, 2) : 0;
+        return `<tr><td>${i + 1}</td><td>${escapeHtml(token).replace(/ /g, "␣")}</td><td class="num prob-cell"><span>${probabilities[i].toPrecision(6)}</span><span class="mini-track" aria-hidden="true"><span style="width:${relative}%"></span></span></td><td class="num">${(1 / probabilities[i]).toPrecision(6)}</td></tr>`;
+      }).join("");
     }
 
     async function loadModel() {
       if (model && tokenizer) return;
-      $("status").textContent = "Loading the model in your browser… The first download may take a little while.";
+      status.textContent = "Downloading the model for this browser… This only happens the first time.";
       const transformers = await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3");
       Tensor = transformers.Tensor;
       tokenizer = await transformers.AutoTokenizer.from_pretrained(MODEL_ID);
@@ -217,11 +399,14 @@
     async function calculateModel() {
       const text = sentence.value.trim();
       $("model-error").classList.add("hidden");
-      if (!text) { $("model-error").textContent = "Type a sentence before calculating."; $("model-error").classList.remove("hidden"); return; }
+      if (!text) { status.textContent = "Add a prompt to start an analysis."; $("model-error").textContent = "Type a sentence before calculating."; $("model-error").classList.remove("hidden"); document.body.classList.add("has-error"); return; }
+      document.body.classList.add("is-loading");
+      document.body.classList.remove("has-error");
       calculate.disabled = true;
+      calculate.querySelector("span").textContent = model ? "Analyzing…" : "Loading model…";
       try {
         await loadModel();
-        $("status").textContent = "Model ready. Calculating probabilities…";
+        status.textContent = "Model ready. Scoring each token…";
         const tokenIds = tokenizer.encode(text);
         if (!tokenIds.length) throw new Error("The sentence did not produce any tokens. Try another sentence.");
         if (tokenIds.length > 1023) throw new Error("This sentence is too long. Please use fewer than 1,024 model tokens.");
@@ -230,6 +415,7 @@
         const inputIds = [50256, ...tokenIds];
         const input = new Tensor("int64", BigInt64Array.from(inputIds, BigInt), [1, inputIds.length]);
         const output = await model({ input_ids: input });
+        if (sentence.value.trim() !== text) { status.textContent = "Prompt changed during analysis. Run it again to score the updated text."; return; }
         const logits = output.logits;
         const [batchSize, sequenceLength, vocabSize] = logits.dims;
         if (batchSize !== 1 || sequenceLength !== inputIds.length) throw new Error("The model returned an unexpected result.");
@@ -244,6 +430,8 @@
         const summary = summarize(probabilities);
         showSteps($("model-steps"), summary, probabilities);
         $("model-perplexity").textContent = summary ? summary.perplexity.toFixed(4) : "—";
+        $("result-count").textContent = `${tokenIds.length} TOKEN${tokenIds.length === 1 ? "" : "S"}`;
+        $("result-count").classList.remove("hidden");
         $("model-output").classList.remove("hidden");
         $("model-placeholder").classList.add("hidden");
 
@@ -255,21 +443,49 @@
           return `<div class="bar-row ${index === 0 ? "top" : ""}"><span class="bar-label">${escapeHtml(label).replace(/ /g, "␣")}</span><div class="track"><div class="fill" style="width:${Math.max(pct, 0.15)}%"></div></div><span class="bar-pct">${pct.toPrecision(4)}%</span></div>`;
         }).join("");
         $("next-placeholder").classList.add("hidden");
-        $("status").textContent = `Calculated with ${MODEL_ID}.`;
+        status.textContent = `Analysis complete · ${MODEL_ID}`;
       } catch (error) {
-        $("status").textContent = "The model could not be loaded or run.";
+        status.textContent = "The analysis could not be completed.";
         $("model-error").textContent = `Model error: ${error?.message || error}. Check your internet connection and try again.`;
         $("model-error").classList.remove("hidden");
+        document.body.classList.add("has-error");
       } finally {
+        document.body.classList.remove("is-loading");
         calculate.disabled = false;
+        calculate.querySelector("span").textContent = "Analyze prompt";
       }
     }
 
     calculate.addEventListener("click", calculateModel);
+    function updateCharacterCount() {
+      $("char-count").textContent = `${sentence.value.length.toLocaleString()} / 5,000 characters`;
+    }
+    function clearAnalysisForEditedPrompt() {
+      $("model-output").classList.add("hidden");
+      $("model-placeholder").classList.remove("hidden");
+      $("result-count").classList.add("hidden");
+      $("next-bars").innerHTML = "";
+      $("next-placeholder").classList.remove("hidden");
+      $("model-error").classList.add("hidden");
+      document.querySelectorAll(".sample").forEach((sample) => sample.setAttribute("aria-pressed", "false"));
+      document.body.classList.remove("has-error");
+      if (!calculate.disabled) status.textContent = model ? "Prompt changed. Analyze again to refresh the results." : "Your prompt stays in this browser. The model loads when you run your first analysis.";
+    }
+    sentence.addEventListener("input", () => { updateCharacterCount(); clearAnalysisForEditedPrompt(); });
+    sentence.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") { event.preventDefault(); calculateModel(); }
+    });
+    $("clear-prompt").addEventListener("click", () => { sentence.value = ""; updateCharacterCount(); clearAnalysisForEditedPrompt(); sentence.focus(); });
+    const shortcutModifier = /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘" : "Ctrl";
+    document.querySelector(".shortcut-hint kbd").textContent = shortcutModifier;
     document.querySelectorAll(".sample").forEach((button) => button.addEventListener("click", () => {
       sentence.value = button.dataset.text;
-      calculateModel();
+      updateCharacterCount();
+      clearAnalysisForEditedPrompt();
+      button.setAttribute("aria-pressed", "true");
+      sentence.focus({ preventScroll: true });
     }));
+    updateCharacterCount();
 
     // Keep hand-entered examples independent from the real model section.
     let simulated = [{ token: "I", p: 0.5 }, { token: " love", p: 0.8 }, { token: " Python", p: 0.2 }];
